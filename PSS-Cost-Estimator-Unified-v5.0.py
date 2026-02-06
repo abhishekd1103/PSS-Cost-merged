@@ -781,7 +781,7 @@ with st.container():
     with col7:
         custom_margin = st.number_input("Project Margins (%)", min_value=0, max_value=50, value=15, step=1)
     with col8:
-        pue_value = st.slider("PUE (Power Usage Effectiveness)", 1.1, 2.0, 1.56, 0.01)
+        pue_value = st.slider("PUE (Power Usage Effectiveness)", 1.1, 2.0, 1.4, 0.01)
 
     # ═══════════════════════════════════════════════════════════════════════════════
     # NEW: COMPETITIVE PRICING MODE
@@ -880,20 +880,20 @@ with st.container():
         equip_col1, equip_col2, equip_col3, equip_col4, equip_col5 = st.columns(5)
         
         with equip_col1:
-            ups_lineup = st.slider("UPS Lineup (MW)", 0.5, 3.0, 1.5, 0.1)
+            ups_lineup = st.slider("UPS Lineup (MW)", 0.5, 3.0, 1.0, 0.1)
         with equip_col2:
-            transformer_mva = st.slider("Transformer (MVA)", 1.0, 5.0, 3.0, 0.1)
+            transformer_mva = st.slider("Transformer (MVA)", 1.0, 2.0, 3.0, 0.1)
         with equip_col3:
-            lv_bus_mw = st.slider("LV Bus Section (MW)", 2.0, 5.0, 3.0, 0.1)
+            lv_bus_mw = st.slider("LV Bus Section (MW)", 1.5, 2.0, 3.0, 0.1)
         with equip_col4:
             pdu_mva = st.slider("PDU Capacity (MVA)", 0.2, 0.8, 0.3, 0.05)
         with equip_col5:
             power_factor = st.slider("Power Factor", 0.90, 1.0, 0.95, 0.01)
     else:
         # Use standard values
-        ups_lineup = 1.5
-        transformer_mva = 3.0
-        lv_bus_mw = 3.0
+        ups_lineup = 1.0
+        transformer_mva = 2.0
+        lv_bus_mw = 2.0
         pdu_mva = 0.3
         power_factor = 0.95
 
@@ -1308,22 +1308,22 @@ junior_allocation = st.session_state.work_allocation['junior'] / 100
 
 # Category-wise base hours (for competitive pricing)
 category_hours = {
-    'load_flow': {'it': 0.4, 'mech': 0.7, 'house': 0.9},
-    'short_circuit': {'it': 0.5, 'mech': 0.8, 'house': 1.0},
-    'pdc': {'it': 0.7, 'mech': 1.1, 'house': 1.4},
-    'arc_flash': {'it': 0.6, 'mech': 1.0, 'house': 1.2},
-    'harmonics': {'it': 0.8, 'mech': 1.2, 'house': 1.5},
-    'transient': {'it': 0.9, 'mech': 1.3, 'house': 1.6}
+    'load_flow': {'it': 0.3, 'mech': 0.4, 'house': 0.6},
+    'short_circuit': {'it': 0.3, 'mech': 0.4, 'house': 0.7},
+    'pdc': {'it': 0.5, 'mech': 0.6, 'house': 0.65},
+    'arc_flash': {'it': 0.4, 'mech': 0.5, 'house': 0.5},
+    'harmonics': {'it': 0.5, 'mech': 0.6, 'house': 0.6},
+    'transient': {'it': 0.8, 'mech': 1.3, 'house': 0.7}
 }
 
 # Standard base hours (non-competitive)
 base_hours_per_bus = {
-    'load_flow': 3.0,
-    'short_circuit': 3.5,
-    'pdc': 5.0,
-    'arc_flash': 4.5,
-    'harmonics': 6.0,
-    'transient': 7.0
+    'load_flow':2.5,
+    'short_circuit': 3.0,
+    'pdc': 4.0,
+    'arc_flash': 3.5,
+    'harmonics': 4.0,
+    'transient': 5.0
 }
 
 studies_data = {
